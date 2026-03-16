@@ -7,90 +7,95 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        .loading-spinner {
-            border: 4px solid rgba(255, 255, 255, 0.1);
-            border-left-color: #a855f7;
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap');
+        
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: radial-gradient(circle at top right, #1e1b4b, #0f172a);
+        }
+
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .loader {
+            border: 3px solid rgba(168, 85, 247, 0.2);
+            border-top: 3px solid #a855f7;
             border-radius: 50%;
-            width: 30px;
-            height: 30px;
+            width: 24px;
+            height: 24px;
             animation: spin 1s linear infinite;
         }
-        @keyframes spin { to { transform: rotate(360deg); } }
-        body { background-color: #0f172a; }
+
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        
+        .btn-gradient {
+            background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+            transition: all 0.3s ease;
+        }
+
+        .btn-gradient:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -10px rgba(168, 85, 247, 0.5);
+        }
     </style>
 </head>
-<body class="text-white font-sans min-h-screen flex flex-col items-center justify-center p-4">
+<body class="text-slate-200 min-h-screen flex flex-col items-center justify-center p-4">
 
     <header class="text-center mb-8">
-        <h1 class="text-4xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">
-            Logo Viral AI
+        <div class="inline-block p-2 px-4 rounded-full bg-purple-500/10 border border-purple-500/20 mb-4">
+            <span class="text-purple-400 text-xs font-bold tracking-widest uppercase">Inteligencia Artificial Real</span>
+        </div>
+        <h1 class="text-5xl font-extrabold tracking-tight text-white mb-2">
+            Logo Viral <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500">AI</span>
         </h1>
-        <p class="text-gray-400 mt-2 italic text-sm text-purple-300">Impulsado por Vibras Positivas</p>
+        <p class="text-slate-400">Transforma tu marca con la energía de Vibras Positivas</p>
     </header>
 
-    <main class="bg-gray-800 p-8 rounded-3xl shadow-2xl w-full max-w-lg border border-gray-700">
+    <main class="glass-card p-8 rounded-3xl w-full max-w-lg shadow-2xl">
         
         <div class="space-y-4 mb-6">
-            <label class="block text-sm font-semibold text-gray-300 italic">1. Pega la URL de tu logo:</label>
-            <div class="flex gap-2">
-                <input type="text" id="logo-url" placeholder="https://ejemplo.com/logo.png" 
-                class="flex-grow bg-gray-900 border border-gray-600 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-purple-500 text-sm">
-                <button id="test-logo-btn" class="bg-gray-700 hover:bg-gray-600 text-xs px-3 rounded-xl transition-all">Demo</button>
+            <label class="block text-sm font-medium text-slate-300">1. URL del Logo (Pública)</label>
+            <div class="relative">
+                <input type="text" id="logo-url" 
+                    placeholder="https://tusitio.com/logo.png" 
+                    class="w-full bg-slate-900/50 border border-slate-700 rounded-2xl px-5 py-4 outline-none focus:ring-2 focus:ring-purple-500 transition-all text-sm">
+                <button id="btn-demo" class="absolute right-3 top-3 text-xs bg-slate-700 hover:bg-slate-600 px-3 py-1.5 rounded-lg transition-colors">
+                    Demo
+                </button>
             </div>
         </div>
 
         <div class="space-y-4 mb-8">
-            <label class="block text-sm font-semibold text-gray-300 italic">2. Estilo del Video:</label>
-            <select id="style-select" class="w-full bg-gray-900 border border-gray-600 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-purple-500 text-sm">
-                <option value="Cinematic 3D gold reveal, luxury lighting, 4k">Cinematográfico Dorado</option>
-                <option value="Neon cyberpunk glow, fast energy, futuristic">Neon Cyberpunk</option>
-                <option value="Natural soft light, organic movement, fresh">Fresco y Natural</option>
+            <label class="block text-sm font-medium text-slate-300">2. Elige el efecto visual</label>
+            <select id="style-select" class="w-full bg-slate-900/50 border border-slate-700 rounded-2xl px-5 py-4 outline-none focus:ring-2 focus:ring-purple-500 transition-all text-sm appearance-none cursor-pointer">
+                <option value="Cinematic 3D gold reveal, luxury lighting, 4k, particles">Revelación 3D Oro (Premium)</option>
+                <option value="Futuristic neon glitch, cyber motion, high energy, vibrant">Energía Neon (Cyberpunk)</option>
+                <option value="Soft natural light, organic transitions, clean and fresh">Fresco y Natural (Optimista)</option>
+                <option value="Epic fire and smoke reveal, cinematic action, 4k">Explosión Épica</option>
             </select>
         </div>
 
-        <button id="generate-btn" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:scale-105 text-white font-bold py-4 rounded-2xl transition-all shadow-xl flex items-center justify-center gap-3">
-            <i class="fas fa-play"></i><span>GENERAR VIDEO VIRAL</span>
+        <button id="generate-btn" class="btn-gradient w-full py-5 rounded-2xl text-white font-bold text-lg flex items-center justify-center gap-3">
+            <i class="fas fa-bolt"></i>
+            <span>CREAR VIDEO AHORA</span>
         </button>
 
-        <div id="status-container" class="hidden mt-8 p-5 bg-gray-900 rounded-2xl border border-purple-500/30">
-            <div class="flex items-center gap-4">
-                <div class="loading-spinner"></div>
-                <div>
-                    <p id="status-text" class="text-sm text-purple-300 font-bold italic">Contactando IA...</p>
-                    <p id="time-text" class="text-xs text-gray-500 mt-1"></p>
+        <div id="status-box" class="hidden mt-8 p-6 bg-slate-900/80 rounded-2xl border border-purple-500/20">
+            <div class="flex items-start gap-4">
+                <div class="loader mt-1"></div>
+                <div class="flex-grow">
+                    <p id="status-msg" class="text-sm font-semibold text-purple-300 italic">Conectando con el motor de IA...</p>
+                    <div class="w-full bg-slate-800 h-1.5 rounded-full mt-3 overflow-hidden">
+                        <div id="progress-bar" class="bg-purple-500 h-full w-0 transition-all duration-500"></div>
+                    </div>
+                    <p id="timer" class="text-[10px] text-slate-500 mt-2 uppercase tracking-widest font-bold">Tiempo estimado: 60-90 segundos</p>
                 </div>
             </div>
         </div>
 
-        <div id="result-container" class="hidden mt-10 text-center">
-            <video id="output-video" controls class="w-full rounded-2xl border-2 border-purple-500 shadow-2xl bg-black"></video>
-            <a id="download-link" href="#" target="_blank" class="inline-block mt-6 bg-green-600 hover:bg-green-500 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-all">
-                📥 DESCARGAR VIDEO
-            </a>
-        </div>
-    </main>
-
-    <footer class="mt-12 text-gray-500 text-xs text-center">
-        App desarrollada por <strong class="text-purple-400">Vibras Positivas</strong><br>
-        Derechos de Autor © 2026 - Conexión Segura vía Proxy
-    </footer>
-
-    <script>
-        const REPLICATE_TOKEN = "R8_Zns7pcZVRdnsTnxfINhEkgVGqZpC3jn1fuyh8";
-        // Proxy para evitar el error CORS
-        const PROXY = "https://cors-anywhere.herokuapp.com/";
-        const API_URL = "https://api.replicate.com/v1/predictions";
-        const TEST_IMAGE = "https://replicate.delivery/pbxt/JRw7O8rWkI9kH2xPz5Yn9L1yF5t0H9rD7e5X3g1v1B1b1B1/output.png";
-
-        const logoUrlInput = document.getElementById('logo-url');
-        const generateBtn = document.getElementById('generate-btn');
-        const statusContainer = document.getElementById('status-container');
-        const statusText = document.getElementById('status-text');
-        const timeText = document.getElementById('time-text');
-        const resultContainer = document.getElementById('result-container');
-        const outputVideo = document.getElementById('output-video');
-
-        document.getElementById('test-logo-btn').onclick = () => { logoUrlInput.value = TEST_IMAGE; };
-
-        generateBtn.onclick = async () => {
-            const
+        <div id="result-box" class="hidden mt-8 animate-fadeIn">
+            <div class="relative group">
+                <video id="video-player" controls class="w-full rounded-2xl border-2 border-purple-500/
