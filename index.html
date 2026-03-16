@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logo-to-Viral Video AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="bg-gray-900 text-white font-sans min-h-screen flex flex-col items-center justify-center p-6">
+
+    <header class="text-center mb-10">
+        <h1 class="text-4xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">
+            Logo Viral AI
+        </h1>
+        <p class="text-gray-400 mt-2">Convierte tu logo en un video de alto impacto en segundos.</p>
+    </header>
+
+    <main class="bg-gray-800 p-8 rounded-2xl shadow-2xl w-full max-w-md border border-gray-700">
+        
+        <div id="drop-area" class="border-2 border-dashed border-gray-600 rounded-xl p-10 text-center hover:border-purple-500 transition-colors cursor-pointer">
+            <input type="file" id="logo-input" class="hidden" accept="image/*">
+            <i class="fas fa-cloud-upload-alt text-4xl text-purple-500 mb-4"></i>
+            <p id="file-name" class="text-sm text-gray-300">Arrastra tu logo o haz clic aquí</p>
+        </div>
+
+        <div class="mt-6 space-y-4">
+            <label class="block text-sm font-medium text-gray-400">Estilo de Video:</label>
+            <select id="style-select" class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 focus:ring-2 focus:ring-purple-500 outline-none">
+                <option value="cinematic">Cinematográfico 3D</option>
+                <option value="neon">Neon Glow (Cyberpunk)</option>
+                <option value="liquid">Oro Líquido</option>
+                <option value="smoke">Explosión de Humo</option>
+            </select>
+        </div>
+
+        <button id="generate-btn" class="w-full mt-8 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-bold py-3 rounded-xl transition-all transform hover:scale-105 shadow-lg">
+            GENERAR VIDEO VIRAL
+        </button>
+
+        <div id="result-container" class="hidden mt-8">
+            <p class="text-sm text-green-400 mb-2 italic">✨ ¡Video listo!</p>
+            <video id="output-video" controls class="w-full rounded-lg shadow-inner"></video>
+            <a id="download-link" href="#" class="block text-center mt-4 text-purple-400 hover:underline">Descargar video</a>
+        </div>
+    </main>
+
+    <footer class="mt-12 text-gray-500 text-xs text-center">
+        Powered by AI Models & GitHub Pages <br>
+        <span class="italic">Recuerda añadir tu logo de "vibras positivas" en la edición.</span>
+    </footer>
+
+    <script>
+        // Lógica básica de interacción
+        const dropArea = document.getElementById('drop-area');
+        const fileInput = document.getElementById('logo-input');
+        const generateBtn = document.getElementById('generate-btn');
+
+        dropArea.onclick = () => fileInput.click();
+
+        fileInput.onchange = (e) => {
+            const fileName = e.target.files[0].name;
+            document.getElementById('file-name').innerText = `Archivo: ${fileName}`;
+        };
+
+        generateBtn.onclick = () => {
+            generateBtn.innerText = "Procesando con IA...";
+            generateBtn.disabled = true;
+            // Aquí conectarías con tu API Key de Luma o Replicate
+            setTimeout(() => {
+                alert("¡Simulación completada! Aquí conectarías tu API de video.");
+                generateBtn.innerText = "GENERAR VIDEO VIRAL";
+                generateBtn.disabled = false;
+            }, 3000);
+        };
+    </script>
+</body>
+</html>
